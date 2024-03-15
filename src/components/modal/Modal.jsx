@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 
-export default function Modal() {
+export default function Modal({ name, address, pinCode, phoneNumber, setName, setAddress, setPinCode, setPhoneNumber, buyNow }) {
     let [isOpen, setIsOpen] = useState(false)
 
     function closeModal() {
@@ -52,31 +52,37 @@ export default function Modal() {
                                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl p-2  text-left align-middle shadow-xl transition-all bg-gray-50">
 
                                     <section className="">
-                                        <div className="flex flex-col items-center justify-center py-8 mx-auto  lg:py-0">
-                                          
+                                        <div className="flex flex-col items-center justify-center py-8 mx-auto mt-14  lg:py-0">
+                                        
                                             <div className="w-full  rounded-lg md:mt-0 sm:max-w-md xl:p-0 ">
                                                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
 
                                                     <form className="space-y-4 md:space-y-6" action="#">
                                                         <div>
                                                             <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Enter Full Name</label>
-                                                            <input  type="name" name="name" id="name" className=" border outline-0 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100" required />
+                                                            <input  type="name" value={name} onChange={(e) => setName(e.target.value)} name="name" id="name" className=" border outline-0 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100" required />
                                                         </div>
                                                         <div>
                                                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Enter Full Address</label>
-                                                            <input type="text" name="address" id="address" className=" border outline-0 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100" required />
+                                                            <input
+                                                            value={address} onChange={(e) => setAddress(e.target.value)}
+                                                            type="text" name="address" id="address" className=" border outline-0 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100" required />
                                                         </div>
                                                         <div>
-                                                            <label htmlFor="pincode" className="block mb-2 text-sm font-medium text-gray-900">Enter Pincode</label>
-                                                            <input type="text" name="pincode" id="pincode" className=" border outline-0 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100" required />
+                                                            <label htmlFor="pinCode" className="block mb-2 text-sm font-medium text-gray-900">Enter Pin Code</label>
+                                                            <input
+                                                            value={pinCode} onChange={(e) => setPinCode(e.target.value)}
+                                                            type="text" name="pinCode" id="pinCode" className=" border outline-0 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100" required />
                                                         </div>
                                                         <div>
                                                             <label htmlFor="mobileNumber" className="block mb-2 text-sm font-medium text-gray-900">Enter Mobile Number</label>
-                                                            <input type="text" name="mobileNumber" id="mobileNumber" className=" border outline-0 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100" required />
+                                                            <input
+                                                            value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}
+                                                            type="text" name="mobileNumber" id="mobileNumber" className=" border outline-0 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-100" required />
                                                         </div>
 
                                                     </form>
-                                                    <button onClick={ closeModal} type="button" className="focus:outline-none w-full text-white bg-violet-600 bg-green-600 hover:bg-violet-800  outline-0 font-medium rounded-lg text-sm px-5 py-2.5 ">Order Now</button>
+                                                    <button onClick={() => {buyNow(),  closeModal()} } type="button" className="focus:outline-none w-full text-white bg-violet-600 bg-green-600 hover:bg-violet-800  outline-0 font-medium rounded-lg text-sm px-5 py-2.5 ">Order Now</button>
                                                 </div>
                                             </div>
                                         </div>

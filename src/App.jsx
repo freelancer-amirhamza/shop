@@ -18,12 +18,16 @@ import UpdateProduct from "./pages/admin/dashboard/page/UpdateProduct";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SignUp from "./pages/registration/SignUp";
+import AllProducts from "./pages/allProducts/AllProducts";
+
+
 const App = () => {
   return (
     <MyState>
           <Router>
           <Routes>
             <Route path='/' element={ <Home/> } />
+            <Route path="/allProducts" element={ <AllProducts/> } />
             <Route path='/order' element={ 
               <ProtectedRouteForUser>
                 <Order/> 
@@ -43,7 +47,7 @@ const App = () => {
                 <AddProduct/>
               </ProtectedRouteForAdmin>
             } />
-            <Route path="/updateproduct" element={
+            <Route path="/updateProduct" element={
               <ProtectedRouteForAdmin>
                 <UpdateProduct/>
               </ProtectedRouteForAdmin>
@@ -65,8 +69,7 @@ export default App
 
 export  const ProtectedRouteForUser = ({children}) => {
   const user = localStorage.getItem("user");
-  if (user){
-    return children;
+  if (user){return children;
   }else {
     return <Navigate to={"/login"}/>
   }
