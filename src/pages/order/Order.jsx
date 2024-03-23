@@ -14,8 +14,7 @@ function Order() {
       {orders.length > 0 ?
         (<>
           <div className=" h-full pt-10">
-            {
-              orders.filter(obj => obj.userId == userId).map((order) => {
+            {orders.filter(obj => obj.userId == userId).map((order) => {
                 // order.cartItems.map()
                 return (
                   <>

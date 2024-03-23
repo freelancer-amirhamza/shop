@@ -35,7 +35,7 @@ const MyState = (props) => {
         )
     });
     
-    
+    // Add Products
     const addProduct = async () => {
         if (products.title == null || products.price == null || products.imageUrl ==null ||
         products.category == null || products.description == null  ) {
@@ -61,7 +61,7 @@ const MyState = (props) => {
 
 
     const [apiProduct, setApiProduct ] = useState([])
-    console.log(apiProduct)
+    // console.log(apiProduct)ok
 
     // get Product from API
     const getProducts = async () => {
@@ -144,25 +144,45 @@ const deleteProduct = async (item) => {
 const [orders, setOrders] = useState([]);
 
 const getOrderData = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-        const result = await getDocs(collection(fireDB, "orders"))
+        const result = await getDocs(collection(fireDB, "orders"));
         const ordersArray = [];
         result.forEach((doc) => {
-            ordersArray.push(doc.data());
-            setLoading(false)
+            ordersArray.push({ id: doc.id, ...doc.data() });
         });
         setOrders(ordersArray);
-        console.log(ordersArray)
-        setLoading(false);
     } catch (error) {
-        console.log(error)
-        setLoading(false)
+        console.log(error);
     }
+    setLoading(false);
 }
+
+const deleteOrder = async (orderId) => {
+    setLoading(true);
+    try {
+        await deleteDoc(doc(fireDB, "orders", orderId));
+        setOrders(orders.filter(order => order.id !== orderId));
+        console.log("Order deleted successfully");
+    } catch (error) {
+        console.log(error);
+    }
+    setLoading(false);
+}
+
 useEffect(() => {
     getOrderData();
 }, []);
+
+
+const handleDeleteOrder = async (orderId) => {
+    // Call deleteOrder function to delete the order with the specified orderId
+    await deleteOrder(orderId);
+}
+
+// Delete Order
+
+
 
 const [users, setUsers] = useState([]);
 
@@ -187,6 +207,17 @@ const getUserData = async () => {
 useEffect(() => {
     getUserData();
 }, []);
+const deleteUser = async (item) => {
+    try {
+        await deleteDoc(doc(fireDB, "users", item.id))
+        toast.success("Product Deleted successfully")
+        getUserData();
+        setLoading(false);
+    } catch (error) {
+        console.log(error)
+        setLoading(false);
+    }
+};
 
 // filter
 const [searchKey, setSearchKey] = useState("")
@@ -196,8 +227,8 @@ const [filterPrice, setFilterPrice] = useState("");
     return (
     <MyContext.Provider value={{mode, toggleMode, loading, setLoading,
         product, apiProduct, products, setProducts, addProduct, editHandle,
-        updateProduct, deleteProduct, users, orders,  searchKey, setSearchKey,
-        filterType, setFilterType, filterPrice, setFilterPrice }} >
+        updateProduct, deleteProduct, users, orders, handleDeleteOrder,  searchKey, setSearchKey,
+        filterType, setFilterType, filterPrice, setFilterPrice,deleteUser }} >
         {props.children}
     </MyContext.Provider>
   )
