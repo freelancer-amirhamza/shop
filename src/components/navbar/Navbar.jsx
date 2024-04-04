@@ -65,12 +65,12 @@ export default function Navbar() {
                   All Products
                 </Link>
                 
-                {user ?
+                {/* {user ?
                 <div className="flow-root">
                   <Link to={'/order'} style={{ color: mode === 'dark' ? 'white' : '', }} className="-m-2 block p-2 font-medium text-gray-900">
                     Order
                   </Link>
-                </div> : ""}
+                </div> : ""} */}
                 
                 
                 
@@ -82,12 +82,12 @@ export default function Navbar() {
                 : '' }
                 
 
-                {user ?
+                {/* {user ?
                 <div className="flow-root">
                   <a onClick={logout} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" style={{ color: mode === 'dark' ? 'white' : '', }}>
                     Logout
                   </a>
-                </div> : ""}
+                </div> : ""} */}
                 <div className="flow-root">
                   <Link to={'/'} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer">
                     <img
@@ -150,9 +150,9 @@ export default function Navbar() {
                   <Link to={'/allproducts'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     All Products
                   </Link>
-                  {user ? <Link to={'/order'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
+                  {/* {user ? <Link to={'/order'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     Order
-                  </Link> : ""}
+                  </Link> : ""} */}
 
                   {user.user.email === "amirhamza27940@gmail.com" ?
                 <Link to={'/dashboard'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
@@ -187,11 +187,11 @@ export default function Navbar() {
                 <div className="flex lg:ml-6">
                   <button className='' onClick={toggleMode}>
                     {/* <MdDarkMode size={35} style={{ color: mode === 'dark' ? 'white' : '' }} /> */}
-                    {mode === 'light' ?
-                      (<FiSun className='' size={30} />
-                      ) : 'dark' ?
-                        (<BsFillCloudSunFill size={30} />
-                        ) : ""}
+                    {mode === 'light' ? (
+                          <FiSun className='' size={30} />
+                      ) : mode === 'dark' ? (
+                          <BsFillCloudSunFill size={30} />
+                      ) : null}
                   </button>
                 </div>
 
