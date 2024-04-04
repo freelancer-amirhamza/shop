@@ -11,7 +11,6 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   const user = JSON.parse(localStorage.getItem('user'));
-  // console.log(user.user.email)
   const cartItems = useSelector((state) => state.cart);
   const logout = () => {
     localStorage.clear('user');
@@ -74,7 +73,8 @@ export default function Navbar() {
                 
                 
                 
-                {user.user.email === "amirhamza27940@gmail.com" ?
+                {user && user.user.email === "amirhamza27940@gmail.com" ?
+                
                 <div className="flow-root">
                   <Link to={'/dashboard'} className="-m-2 block p-2 font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>
                     admin
