@@ -74,7 +74,7 @@ export default function Navbar() {
                 
                 
                 {user && user.user.email === "amirhamza27940@gmail.com" ?
-                
+
                 <div className="flow-root">
                   <Link to={'/dashboard'} className="-m-2 block p-2 font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>
                     admin
@@ -154,7 +154,8 @@ export default function Navbar() {
                     Order
                   </Link> : ""}
 
-                  {user.user.email === "amirhamza27940@gmail.com" ?
+                  {user && user.user.email === "amirhamza27940@gmail.com" ?
+
                 <Link to={'/dashboard'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
                 Admin
               </Link> : "" }
