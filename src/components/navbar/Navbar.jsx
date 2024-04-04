@@ -10,11 +10,11 @@ import { useSelector } from 'react-redux';
 export default function Navbar() {
   const [open, setOpen] = useState(false)
 
-  const user = JSON.parse(localStorage.getItem('users'));
+  const user = JSON.parse(localStorage.getItem('user'));
   // console.log(user.user.email)
   const cartItems = useSelector((state) => state.cart);
   const logout = () => {
-    localStorage.clear('users');
+    localStorage.clear('user');
     window.location.href = "/login"
   }
 
